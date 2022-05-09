@@ -7,8 +7,10 @@
 //     middleware: getDefaultMiddleware => [...getDefaultMiddleware(), contactsApi.middleware]
 //   });
 
-import { configureStore, combineReducers} from '@reduxjs/toolkit';
-import {sliceContacts} from "./sliceContacts";
+import { configureStore,
+  // combineReducers
+} from '@reduxjs/toolkit';
+// import {sliceContacts} from "./sliceContacts";
 import {
   persistStore,
   persistReducer,
@@ -41,7 +43,6 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => [...getDefaultMiddleware(), contactsApi.middleware]
     },
   }),
-
   });
 
 
