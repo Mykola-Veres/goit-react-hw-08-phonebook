@@ -1,15 +1,22 @@
+import { useSelector } from "react-redux";
+import authSelectors from "redux/authUser/authUserSelector";
+import {ConteinerLinkStyled, NavLinkStyled} from "./Navigation.styled";
 
-import {ConteinerLinkStyled, NavLinkStyled} from "./Navigation.styled"
 
+export default function Navigation () {
+const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
-export default function Navigation () {return(
-  <ConteinerLinkStyled>
-    <NavLinkStyled to="/" >
-      Home page
-    </NavLinkStyled>
+  return(
+    <ConteinerLinkStyled>
+      <NavLinkStyled to="/" >
+        Home page
+      </NavLinkStyled>
 
-    <NavLinkStyled
-      to="/contacts" >
-      Contacts
-    </NavLinkStyled>
-  </ConteinerLinkStyled>)};
+    {isLoggedIn &&
+      <NavLinkStyled
+        to="/contacts">
+        Contacts
+      </NavLinkStyled>}
+
+    </ConteinerLinkStyled>
+  )};

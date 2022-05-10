@@ -17,7 +17,7 @@ const ContactItem = ({filter}) => {
     <button onClick={refetch} disabled={isUninitialized}> REFETCH </button>
     {showContacts && filterVisibleContacts().map(contact => (
     <ContactsListItem key={contact.id}>
-      {contact.name}: {contact.phone}
+      {contact.name}: {contact.number}
       <ContactsListBtn disabled={isUninitialized}
       onClick={() => deleteContact(contact.id)}
       >{isDeleting ? "deleting..." : "Delete"}

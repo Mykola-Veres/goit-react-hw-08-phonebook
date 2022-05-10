@@ -25,9 +25,9 @@ export const register = createAsyncThunk('authUser/register', async userData => 
   }
 });
 
-const logIn = createAsyncThunk('authUser/login', async credentials => {
+const logIn = createAsyncThunk('authUser/login', async userData => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    const { data } = await axios.post('/users/login', userData);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -51,7 +51,7 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.authUser.token;
 
     if (persistedToken === null) {
-      console.log('Токена нет, уходим из fetchCurrentUser');
+      console.log('Токена нет, добавить тости уходим из fetchCurrentUser');
       return thunkAPI.rejectWithValue();
     }
 
@@ -60,6 +60,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
+      thunkAPI.rejectWithValue(error.response.data)
       // TODO: Добавить обработку ошибки error.message
     }
   },
