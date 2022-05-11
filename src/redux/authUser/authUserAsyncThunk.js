@@ -12,36 +12,74 @@ const token = {
   },
 };
 
-export const register = createAsyncThunk('authUser/register', async userData => {
+export const register = createAsyncThunk('authUser/register', async (userData, {rejectWithValue}) => {
   try {
-    console.log(userData)
     const { data } = await axios.post('/users/signup', userData);
     token.set(data.token);
-    console.log(data)
     return data;
 
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    const errorData = error.response;
+    if (!errorData) {
+      throw error;
+    }
+    if (errorData.status === 400) {
+      return rejectWithValue('Error creating user!!!');
+    }
+    if (errorData.status === 404) {
+      return rejectWithValue('Сonnection error 404!!!');
+    }
+    if (errorData.status === 500) {
+      return rejectWithValue('Server error!!!');
+    }
+    return rejectWithValue('Unknown error!!!');
   }
 });
 
-const logIn = createAsyncThunk('authUser/login', async userData => {
+const logIn = createAsyncThunk('authUser/login', async (userData, {rejectWithValue}) => {
   try {
     const { data } = await axios.post('/users/login', userData);
     token.set(data.token);
     return data;
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    const errorData = error.response;
+    if (!errorData) {
+      throw error;
+    }
+    if (errorData.status === 400) {
+      return rejectWithValue('Authorization error!!!');
+    }
+    if (errorData.status === 404) {
+      return rejectWithValue('Сonnection error 404!!!');
+    }
+    return rejectWithValue('Unknown error!!!');
   }
 });
 
-const logOut = createAsyncThunk('authUser/logout', async () => {
+const logOut = createAsyncThunk('authUser/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     token.unset();
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
+  } catch
+    (error) {
+      const errorData = error.response;
+      if (!errorData) {
+        throw error;
+      }
+      if (errorData.status === 401) {
+        return thunkAPI.rejectWithValue(
+          'There is no header with authorization token!!!'
+        );
+      }
+      if (errorData.status === 404) {
+        return thunkAPI.rejectWithValue('Сonnection error 404!!!');
+      }
+      if (errorData.status === 500) {
+        return thunkAPI.rejectWithValue('Server error!!!');
+      }
+      return thunkAPI.rejectWithValue('Unknown error!!!');
+    }
+
 });
 
 const fetchCurrentUser = createAsyncThunk(
@@ -61,7 +99,6 @@ const fetchCurrentUser = createAsyncThunk(
       return data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.response.data)
-      // TODO: Добавить обработку ошибки error.message
     }
   },
 );
