@@ -28,7 +28,5 @@ background-color: rgb(255, 255, 128);
 export const ConteinerLinkStyled = styled.nav`
   display: flex;
   align-items: center;
-  /* flex-direction: row-reverse; */
-
 
 `

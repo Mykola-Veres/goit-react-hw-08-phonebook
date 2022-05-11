@@ -8,6 +8,7 @@ import PrivateRoute from "components/PrivateRoutes/PrivateRoutes";
 import PublicRoute from "components/PublicRoutes/PublicRouters";
 import authSelectors from "redux/authUser/authUserSelector";
 import CircleLoader from "react-spinners/CircleLoader";
+import { Toaster } from 'react-hot-toast';
 
 const HomeView = lazy(() => import('views/HomeView'));
 const RegistrationView = lazy(() => import('views/RegistrationView'));
@@ -24,6 +25,10 @@ export default function AppRouter () {
 
   return(
     <Container>
+      <Toaster
+      position="top-center"
+      reverseOrder={false}/>
+
     {!isFetchCurrentUser && (
     <>
       <AppBar />

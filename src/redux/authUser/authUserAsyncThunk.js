@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from "react-hot-toast";
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -19,6 +20,7 @@ export const register = createAsyncThunk('authUser/register', async (userData, {
     return data;
   }
   catch (error) {
+    toast.error("This didn't work. Try again!")
     const errorData = error.response;
     if (!errorData) {
       throw error;
@@ -42,6 +44,7 @@ const logIn = createAsyncThunk('authUser/login', async (userData, {rejectWithVal
     token.set(data.token);
     return data;
   } catch (error) {
+    toast.error("This didn't work. Thumping went wrong! Try again!!!")
     const errorData = error.response;
     if (!errorData) {
       throw error;
@@ -62,6 +65,7 @@ const logOut = createAsyncThunk('authUser/logout', async (_, thunkAPI) => {
     token.unset();
   } catch
     (error) {
+      toast.error("This didn't work. Thumping went wrong! Try again!!!")
       const errorData = error.response;
       if (!errorData) {
         throw error;
@@ -88,6 +92,7 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.authUser.token;
 
     if (persistedToken === null) {
+      toast("There is no previously registered user! Please register or login!")
       return thunkAPI.rejectWithValue('not have CurrentUser');
     }
     token.set(persistedToken);
@@ -95,6 +100,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
+      toast.error("This didn't work. Thumping went wrong! Try again!!!")
       thunkAPI.rejectWithValue(error.response.data)
     }
   },

@@ -1,6 +1,11 @@
+import UserMenu from "components/UserMenu";
+import { useSelector } from "react-redux";
+import authSelectors from "redux/authUser/authUserSelector";
 import {TitleHomePageStyled, ConteinerHomePageStyled, NavLinkHomeViewStyled} from "./HomeView.styled"
 
 export default function HomeView () {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   return(
     <ConteinerHomePageStyled >
     <TitleHomePageStyled >
@@ -9,6 +14,8 @@ export default function HomeView () {
         💁‍♀️
       </span>
     </TitleHomePageStyled>
+
+      {isLoggedIn ? <UserMenu/> : <>
       <NavLinkHomeViewStyled
         to="/register"
       >
@@ -19,7 +26,7 @@ export default function HomeView () {
       >
         If you already have an account, click here!
       </NavLinkHomeViewStyled>
-
+      </>}
 
   </ConteinerHomePageStyled>
   )

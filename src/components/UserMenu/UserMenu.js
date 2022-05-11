@@ -11,9 +11,10 @@ export default function UserMenu() {
 
   return (
     <ConteinerUserMenuStyled>
-      <TextUserMenuStyled> Welcome: {name}, your email: {email} </TextUserMenuStyled>
+      <TextUserMenuStyled> Welcome: {name}, </TextUserMenuStyled>
+      <TextUserMenuStyled> your email: {email} </TextUserMenuStyled>
       <button type="button" onClick={() => dispatch(operations.logOut())}>
-        Exit
+        Exit log-Out
       </button>
     </ConteinerUserMenuStyled>
   );
