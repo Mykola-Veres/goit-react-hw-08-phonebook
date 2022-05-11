@@ -29,11 +29,11 @@ export default function LoginUserView() {
 
   return (
     <div>
-      <h1>Страница логина</h1>
+      <h1>User Login</h1>
 
       <FormUserViewStyled onSubmit={handleSubmit} autoComplete="off">
         <LabelUserViewStyled >
-          Почта
+          E-mail
           <InputUserViewStyled
             type="email"
             name="email"
@@ -43,7 +43,7 @@ export default function LoginUserView() {
         </LabelUserViewStyled>
 
         <LabelUserViewStyled >
-          Пароль
+          Password
           <InputUserViewStyled
             type="password"
             name="password"
@@ -52,7 +52,7 @@ export default function LoginUserView() {
           />
         </LabelUserViewStyled>
 
-        <button type="submit">Войти</button>
+        <button type="submit">Log-in</button>
       </FormUserViewStyled>
     </div>
   );

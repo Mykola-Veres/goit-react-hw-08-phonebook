@@ -17,10 +17,10 @@ export const LabelUserViewStyled = styled.label`
 `;
 
 export const InputUserViewStyled = styled.input`
-  /* display: block;
-  width: 420;
-  display: flex;
-  flex-direction: center;
-  align-items: center;
-  margin-bottom: 150; */
+ display: block;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 15;
 `;

@@ -1,27 +1,26 @@
-import { NavLink } from "react-router-dom"
-import {TitleHomePageStyled, ConteinerHomePageStyled} from "./HomeView.styled"
+import {TitleHomePageStyled, ConteinerHomePageStyled, NavLinkHomeViewStyled} from "./HomeView.styled"
 
 export default function HomeView () {
   return(
     <ConteinerHomePageStyled >
     <TitleHomePageStyled >
-      Приветственная страница нашего сервиса{' '}
+        Welcom to your phonebook!{' '}
       <span role="img" aria-label="Иконка приветствия">
         💁‍♀️
       </span>
-
-      <NavLink
+    </TitleHomePageStyled>
+      <NavLinkHomeViewStyled
         to="/register"
       >
         If you haven't registered yet, click here!
-      </NavLink>
-      <NavLink
+      </NavLinkHomeViewStyled>
+      <NavLinkHomeViewStyled
         to="/login"
       >
         If you already have an account, click here!
-      </NavLink>
+      </NavLinkHomeViewStyled>
 
-    </TitleHomePageStyled>
+
   </ConteinerHomePageStyled>
   )
 };

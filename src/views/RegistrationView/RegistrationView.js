@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/authUser/authUserAsyncThunk';
-import {FormHomePageStyled, LabelHomePageStyled} from "./RegistrationView.styled"
+import {FormHomePageStyled, LabelHomePageStyled, InputHomePageStyled} from "./RegistrationView.styled"
 
 
 export default function RegisterView() {
@@ -33,17 +33,17 @@ export default function RegisterView() {
 
   return (
     <div>
-      <h1>Page registration</h1>
+      <h1>Page User Registration</h1>
 
       <FormHomePageStyled onSubmit={handleSubmit} autoComplete="off">
         <LabelHomePageStyled >
           Name
-          <input type="text" name="name" value={name} onChange={handleChange} />
+          <InputHomePageStyled type="text" name="name" value={name} onChange={handleChange} />
         </LabelHomePageStyled>
 
         <LabelHomePageStyled >
           Email
-          <input
+          <InputHomePageStyled
             type="email"
             name="email"
             value={email}
@@ -53,7 +53,7 @@ export default function RegisterView() {
 
         <LabelHomePageStyled >
           Password
-          <input
+          <InputHomePageStyled
             type="password"
             name="password"
             value={password}
