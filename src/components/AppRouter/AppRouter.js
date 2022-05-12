@@ -9,6 +9,7 @@ import PublicRoute from "components/PublicRoutes/PublicRouters";
 import authSelectors from "redux/authUser/authUserSelector";
 import CircleLoader from "react-spinners/CircleLoader";
 import { Toaster } from 'react-hot-toast';
+import { GlobalStyle } from "common/GlobalStyle";
 
 const HomeView = lazy(() => import('views/HomeView'));
 const RegistrationView = lazy(() => import('views/RegistrationView'));
@@ -25,6 +26,7 @@ export default function AppRouter () {
 
   return(
     <Container>
+      <GlobalStyle/>
       <Toaster
       position="top-center"
       reverseOrder={false}/>
@@ -40,12 +42,12 @@ export default function AppRouter () {
               </PublicRoute>
             }/>
             <Route path="register" element={
-              <PublicRoute restricted>
+              <PublicRoute redirectTo="/contacts" restricted>
                 <RegistrationView/>
               </PublicRoute>
             }/>
             <Route path="login" element={
-              <PublicRoute redirectTo="contacts" restricted>
+              <PublicRoute redirectTo="/contacts" restricted>
                 <LoginUserView/>
               </PublicRoute>
             }/>

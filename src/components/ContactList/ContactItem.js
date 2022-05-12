@@ -16,6 +16,8 @@ const ContactItem = ({filter}) => {
 
   const showContacts = contacts && !isFetching && !isError && isLoggedIn && refetch;
 
+  // useEffect(() => {dispatch(contactsOperations.fetchContacts());}, [dispatch]);
+
     return (<>
     <button onClick={refetch} disabled={isUninitialized}> REFETCH </button>
     {showContacts && filterVisibleContacts().map(contact => (

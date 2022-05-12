@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,34 +14,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-button {
-  cursor: pointer;
-}
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
-
-* {
-  box-sizing: border-box;
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
-
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
+  overflow-wrap: break-word;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -51,3 +57,9 @@ ol {
   list-style: none;
   text-decoration: none;
 }
+button {
+  /* border: none;
+  background-color: transparent; */
+  cursor: pointer;
+}
+`;

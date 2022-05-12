@@ -39,6 +39,9 @@ export default function LoginUserView() {
             name="email"
             value={email}
             onChange={handleChange}
+            pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+            title="Example user@mail.com"
+            required
           />
         </LabelUserViewStyled>
 
@@ -49,6 +52,7 @@ export default function LoginUserView() {
             name="password"
             value={password}
             onChange={handleChange}
+            required
           />
         </LabelUserViewStyled>
 

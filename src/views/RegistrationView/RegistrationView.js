@@ -38,7 +38,14 @@ export default function RegisterView() {
       <FormHomePageStyled onSubmit={handleSubmit} autoComplete="off">
         <LabelHomePageStyled >
           Name
-          <InputHomePageStyled type="text" name="name" value={name} onChange={handleChange} />
+          <InputHomePageStyled
+          type="text"
+          name="name"
+          value={name} onChange={handleChange}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          />
         </LabelHomePageStyled>
 
         <LabelHomePageStyled >
@@ -48,6 +55,9 @@ export default function RegisterView() {
             name="email"
             value={email}
             onChange={handleChange}
+            pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+            title="Example user@gmail.com"
+            required
           />
         </LabelHomePageStyled>
 
@@ -58,6 +68,7 @@ export default function RegisterView() {
             name="password"
             value={password}
             onChange={handleChange}
+            required
           />
         </LabelHomePageStyled>
 
