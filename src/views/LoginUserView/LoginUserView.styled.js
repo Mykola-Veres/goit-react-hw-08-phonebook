@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { styled } from '@mui/material/styles';
 
 export const FormUserViewStyled = styled.form`
   max-width: 620;
@@ -17,10 +18,10 @@ export const LabelUserViewStyled = styled.label`
 `;
 
 export const InputUserViewStyled = styled.input`
- display: block;
-    padding: 5px;
-    border: 2px solid black;
-    border-radius: 6px;
-    width: 100%;
-    margin-bottom: 15;
+  display: block;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 15;
 `;

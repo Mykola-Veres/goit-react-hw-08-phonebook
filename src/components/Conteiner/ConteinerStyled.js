@@ -6,4 +6,5 @@ export const ContainerStyled = styled.div`
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
+  background-color: rgba(100, 200, 100, 0.2);
 `;

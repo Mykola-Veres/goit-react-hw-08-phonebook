@@ -10,11 +10,17 @@ export const ContactsListBtn = styled.button`
 `;
 
 export const ContactsListItem = styled.li`
-  border: 1px solid blue;
-  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba(117, 190, 218, 0.7);
+  background-color: rgba(117, 190, 218, 0.4);
+  border-radius: 8px;
   font-size: 14px;
   :not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  padding: 5px;
+  padding: 10px;
+  @media (min-width: 920px) {
+    width: 900px;
+  }
 `;

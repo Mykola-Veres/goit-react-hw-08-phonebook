@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const HeaderStyled = styled.header`
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-background-color: rgb(105, 105, 128);
-border-radius: 35px;
+  background-color: rgba(119, 180, 222, 1);
+  border-radius: 12px;
   padding: 20px;
-  margin-bottom: 10px;
-  `
+  border: 1px solid rgba(222, 222, 222, 1);
+`;
