@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import operations from '../../redux/authUser/authUserAsyncThunk';
-import {
-  FormHomePageStyled,
-  LabelHomePageStyled,
-  InputHomePageStyled,
-} from './RegistrationView.styled';
-
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
