@@ -1,31 +1,30 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://connections-api.herokuapp.com',
-  prepareHeaders: (headers, { getState }) => {
-    const token = getState().authUser.token;
-    // console.log("getState()",getState())
-    if (token) {
-      headers.set('authorization', `Bearer ${token}`)
-    }
-    return headers
-  }
-}),
-  tagTypes: ["contacts"],
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://connections-api.herokuapp.com',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().authUser.token;
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
+  tagTypes: ['contacts'],
 
-  endpoints: (builder) => ({
-
+  endpoints: builder => ({
     getContacts: builder.query({
       query: () => ({
         url: `/contacts`,
         method: 'GET',
       }),
-      providesTags: ["contacts"],
+      providesTags: ['contacts'],
     }),
 
     createContacts: builder.mutation({
-      query: ({name, number}) => ({
+      query: ({ name, number }) => ({
         url: `/contacts`,
         method: 'POST',
         body: {
@@ -33,16 +32,30 @@ export const contactsApi = createApi({
           number,
         },
       }),
-      invalidatesTags: ["contacts"]
+      invalidatesTags: ['contacts'],
+    }),
+
+    updateContacts: builder.mutation({
+      query: ({ contactId, name, number }) => ({
+        url: `/contacts/${contactId}`,
+        method: 'PATCH',
+        body: { name, number },
+      }),
+      invalidatesTags: ['contacts'],
     }),
 
     deleteContacts: builder.mutation({
-      query: (contactId) => ({
+      query: contactId => ({
         url: `/contacts/${contactId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ["contacts"],
+      invalidatesTags: ['contacts'],
     }),
   }),
-})
-export const { useGetContactsQuery, useCreateContactsMutation, useDeleteContactsMutation } = contactsApi
+});
+export const {
+  useGetContactsQuery,
+  useCreateContactsMutation,
+  useDeleteContactsMutation,
+  useUpdateContactsMutation,
+} = contactsApi;

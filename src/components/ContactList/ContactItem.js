@@ -16,8 +16,14 @@ import stringAvatar from '../../utils';
 import Avatar from '@mui/material/Avatar';
 import Copyright from 'CopyRights/CopyRights';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+import EditContact from '../EditContact/EditContact';
 
 const ContactItem = ({ filter }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentContact, setCurrentContact] = useState(null);
+  const [showDeteil, setShowDeteil] = useState(false);
+
   const {
     data: contacts,
     isUninitialized,
@@ -25,6 +31,7 @@ const ContactItem = ({ filter }) => {
     refetch,
     isError,
   } = useGetContactsQuery();
+
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   function filterVisibleContacts() {
@@ -46,6 +53,23 @@ const ContactItem = ({ filter }) => {
     return name;
   }
 
+  function handlerEditContact(id, name, number) {
+    if (!isEdit) {
+      setIsEdit(true);
+    } else {
+      setIsEdit(false);
+    }
+    setCurrentContact({ id, name, number });
+  }
+
+  function handlerDetailsContact() {
+    if (!showDeteil) {
+      setShowDeteil(true);
+    } else {
+      setShowDeteil(false);
+    }
+  }
+
   return (
     <>
       {showContacts && (
@@ -59,6 +83,14 @@ const ContactItem = ({ filter }) => {
         >
           REFETCH CONTACTS
         </Button>
+      )}
+
+      {isEdit && currentContact && (
+        <EditContact
+          contactId={currentContact.id}
+          initialName={currentContact.name}
+          initialNumber={currentContact.number}
+        />
       )}
 
       {showContacts &&
@@ -84,19 +116,25 @@ const ContactItem = ({ filter }) => {
 
             <Stack direction="row" spacing={2}>
               <Button
+                onClick={() =>
+                  handlerEditContact(contact.id, contact.name, contact.number)
+                }
                 variant="contained"
                 startIcon={<EditIcon />}
                 sx={{ bgcolor: '#0288d1' }}
               >
                 EDIT
               </Button>
+
               <Button
+                onClick={handlerDetailsContact}
                 variant="contained"
                 startIcon={<DetailsIcon />}
                 sx={{ bgcolor: '#0288d1' }}
               >
                 DETEILS
               </Button>
+
               <Button
                 variant="contained"
                 startIcon={<DeleteIcon />}
@@ -110,6 +148,7 @@ const ContactItem = ({ filter }) => {
             </Stack>
           </ContactsListItem>
         ))}
+      {showDeteil && <h4>Information about Contact: FAVORITE</h4>}
       <Copyright></Copyright>
     </>
   );
